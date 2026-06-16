@@ -1,0 +1,253 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Battle Platform</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo-section">
+            <h1>⚔️ Quiz Battle Platform</h1>
+            <p>Challenge Yourself • Beat the Leaderboard • Learn & Win</p>
+        </div>
+
+    </header>
+
+    <!-- ================= HOME PAGE ================= -->
+
+    <section id="homePage" class="home-page">
+
+        <div class="home-card">
+
+            <div class="banner">
+                <img src="quiz-banner.jpg"
+            <h2>Welcome Challenger!</h2>
+
+            <p class="subtitle">
+                Enter your name and select a category to begin.
+            </p>
+
+            <div class="input-group">
+
+                <label for="playerName">
+                    Player Name
+                </label>
+
+                <input
+                    type="text"
+                    id="playerName"
+                    placeholder="Enter your name">
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="category">
+                    Select Category
+                </label>
+
+                <select id="category">
+
+                    <option value="">
+                        Choose Category
+                    </option>
+
+                    <option value="html">
+                        HTML
+                    </option>
+
+                    <option value="css">
+                        CSS
+                    </option>
+
+                    <option value="javascript">
+                        JavaScript
+                    </option>
+
+                    <option value="python">
+                        Python
+                    </option>
+
+                    <option value="general">
+                        General Knowledge
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button class="btn start-btn">
+                <i class="fa-solid fa-play"></i>
+                Start Quiz
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= QUIZ PAGE ================= -->
+
+    <section id="quizPage" class="quiz-page">
+
+        <div class="quiz-container">
+
+            <div class="quiz-top-bar">
+
+                <div class="score-box">
+                    <i class="fa-solid fa-star"></i>
+                    Score :
+                    <span id="score">0</span>
+                </div>
+
+                <div class="timer-box">
+                    <i class="fa-solid fa-clock"></i>
+                    Time :
+                    <span id="timer">30</span>s
+                </div>
+
+            </div>
+
+            <div class="question-card">
+
+                <h2 id="question">
+                    Question will appear here...
+                </h2>
+
+                <div id="options">
+
+                    <!-- Options generated dynamically -->
+
+                    <!-- Example -->
+                    <!--
+                    <button class="option-btn">
+                        Option 1
+                    </button>
+                    -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= RESULT PAGE ================= -->
+
+    <section id="resultPage" class="result-page">
+
+        <div class="result-card">
+
+            <img
+                src="assets/images/trophy.png"
+                alt="Trophy"
+                class="trophy">
+
+            <h2>Quiz Completed!</h2>
+
+            <div id="result">
+
+                <div class="result-item">
+                    <h3>Final Score</h3>
+                    <p id="finalScore">0</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>Correct Answers</h3>
+                    <p id="correctCount">0</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>Wrong Answers</h3>
+                    <p id="wrongCount">0</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>Accuracy</h3>
+                    <p id="accuracy">0%</p>
+                </div>
+
+            </div>
+
+            <button class="btn restart-btn">
+                <i class="fa-solid fa-rotate-right"></i>
+                Play Again
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LEADERBOARD ================= -->
+
+    <section class="leaderboard-page">
+
+        <div class="leaderboard-card">
+
+            <h2>
+                <i class="fa-solid fa-trophy"></i>
+                Leaderboard
+            </h2>
+
+            <ul id="leaderboard">
+
+                <li>
+                    <span>🥇 Player One</span>
+                    <span>100</span>
+                </li>
+
+                <li>
+                    <span>🥈 Player Two</span>
+                    <span>90</span>
+                </li>
+
+                <li>
+                    <span>🥉 Player Three</span>
+                    <span>80</span>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Quiz Battle Platform |
+            Built with HTML, CSS & JavaScript
+        </p>
+
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="data/questions.js"></script>
+
+    <script src="js/auth.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/leaderboard.js"></script>
+    <script src="js/analytics.js"></script>
+
+    <!-- Optional UI File -->
+    <script src="js/ui.js"></script>
+
+</body>
+</html>
+```
