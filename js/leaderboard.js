@@ -1,4 +1,3 @@
-
 function saveScore(playerName, score) {
   let board = JSON.parse(localStorage.getItem('quizBoard')) || [];
   board.push({name: playerName, score: score, date: new Date().toLocaleDateString()});
