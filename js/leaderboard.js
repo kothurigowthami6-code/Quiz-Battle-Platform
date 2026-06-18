@@ -1,18 +1,37 @@
-function saveScore(playerName, score) {
-  let board = JSON.parse(localStorage.getItem('quizBoard')) || [];
-  board.push({name: playerName, score: score, date: new Date().toLocaleDateString()});
-  board.sort((a, b) => b.score - a.score); // High score top
-  board = board.slice(0, 10); // Top 10 only
-  localStorage.setItem('quizBoard', JSON.stringify(board));
+// Leaderboard - Top scores manage చేస్తుంది
+class Leaderboard {
+  constructor() {
+    this.scores = JSON.parse(localStorage.getItem('leaderboard')) || [];
+  }
+
+  // కొత్త score add చేయి
+  addScore(username, score) {
+    this.scores.push({ username, score, date: new Date().toLocaleDateString() });
+    // Score base చేసి sort చేయి - ఎక్కువ score top లో
+    this.scores.sort((a, b) => b.score - a.score);
+    // Top 10 మాత్రమే keep చేయి
+    this.scores = this.scores.slice(0, 10);
+    localStorage.setItem('leaderboard', JSON.stringify(this.scores));
+  }
+
+  // Top 10 list return చేస్తుంది
+  getTopScores() {
+    return this.scores;
+  }
+
+  // HTML table లో display చేయి
+  displayLeaderboard(elementId) {
+    const container = document.getElementById(elementId);
+    if (!container) return;
+
+    let html = '<h3>🏆 Leaderboard</h3><ol>';
+    this.scores.forEach((player, index) => {
+      html += `<li>${player.username} - ${player.score} points</li>`;
+    });
+    html += '</ol>';
+    container.innerHTML = html;
+  }
 }
 
-function loadLeaderboard() {
-  let board = JSON.parse(localStorage.getItem('quizBoard')) || [];
-  let table = document.getElementById('leaderboardTable');
-  if(!table) return;
-  table.innerHTML = board.map((p, i) => 
-    `<tr><td>${i+1}</td><td>${p.name}</td><td>${p.score}</td><td>${p.date}</td></tr>`
-  ).join('');
-}
-
-window.onload = loadLeaderboard;
+const leaderboard = new Leaderboard();
+export default leaderboard;

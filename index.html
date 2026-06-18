@@ -1,6 +1,7 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,9 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
 
     <!-- ================= HEADER ================= -->
@@ -32,68 +33,64 @@
         <div class="home-card">
 
             <div class="banner">
-                <img src="quiz-banner.jpg"
-            <h2>Welcome Challenger!</h2>
+                <img src="quiz-banner.jpg" <h2>Welcome Challenger!</h2>
 
-            <p class="subtitle">
-                Enter your name and select a category to begin.
-            </p>
+                <p class="subtitle">
+                    Enter your name and select a category to begin.
+                </p>
 
-            <div class="input-group">
+                <div class="input-group">
 
-                <label for="playerName">
-                    Player Name
-                </label>
+                    <label for="playerName">
+                        Player Name
+                    </label>
 
-                <input
-                    type="text"
-                    id="playerName"
-                    placeholder="Enter your name">
+                    <input type="text" id="playerName" placeholder="Enter your name">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="category">
+                        Select Category
+                    </label>
+
+                    <select id="category">
+
+                        <option value="">
+                            Choose Category
+                        </option>
+
+                        <option value="html">
+                            HTML
+                        </option>
+
+                        <option value="css">
+                            CSS
+                        </option>
+
+                        <option value="javascript">
+                            JavaScript
+                        </option>
+
+                        <option value="python">
+                            Python
+                        </option>
+
+                        <option value="general">
+                            General Knowledge
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn start-btn">
+                    <i class="fa-solid fa-play"></i>
+                    Start Quiz
+                </button>
 
             </div>
-
-            <div class="input-group">
-
-                <label for="category">
-                    Select Category
-                </label>
-
-                <select id="category">
-
-                    <option value="">
-                        Choose Category
-                    </option>
-
-                    <option value="html">
-                        HTML
-                    </option>
-
-                    <option value="css">
-                        CSS
-                    </option>
-
-                    <option value="javascript">
-                        JavaScript
-                    </option>
-
-                    <option value="python">
-                        Python
-                    </option>
-
-                    <option value="general">
-                        General Knowledge
-                    </option>
-
-                </select>
-
-            </div>
-
-            <button class="btn start-btn">
-                <i class="fa-solid fa-play"></i>
-                Start Quiz
-            </button>
-
-        </div>
 
     </section>
 
@@ -150,10 +147,7 @@
 
         <div class="result-card">
 
-            <img
-                src="assets/images/trophy.png"
-                alt="Trophy"
-                class="trophy">
+            <img src="assets/images/trophy.png" alt="Trophy" class="trophy">
 
             <h2>Quiz Completed!</h2>
 
@@ -193,25 +187,30 @@
     <!-- ================= LEADERBOARD ================= -->
 
     <!-- ================= LEADERBOARD ================= -->
-<section class="leaderboard-page">
-  <div class="leaderboard-page">
-    <div class="leaderboard-card">
-      <h2>
-        <i class="i class="fa-solid fa-trophy"></i>
-        Leaderboard
-      </h2>
+    <section class="leaderboard-page">
+        <div class="leaderboard-page">
+            <div class="leaderboard-card">
+                <h2>
+                    <i class="i class=" fa-solid fa-trophy"></i>
+                    Leaderboard
+                </h2>
 
-      <table border="1" width="100%">
-        <thead>
-          <tr><th>Rank</th><th>Name</th><th>Score</th><th>Date</th></.tr>
-        </thead>
-        <tbody id="leaderboardTable">
-          <!-- JS ఇక్కడ scores add చేస్తుంది -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+                <table border="1" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                            </.tr>
+                    </thead>
+                    <tbody id="leaderboardTable">
+                        <!-- JS ఇక్కడ scores add చేస్తుంది -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
     <!-- ================= FOOTER ================= -->
 
@@ -231,12 +230,13 @@
     <script src="js/auth.js"></script>
     <script src="js/quiz.js"></script>
     <script src="js/timer.js"></script>
-    <script src="js/leaderboard.js"></script>
-    <script src="js/analytics.js"></script>
+    <script type="module" src="js/leaderboard.js"></script>
+    <script type="module" src="js/analytics.js"></script>
 
     <!-- Optional UI File -->
     <script src="js/ui.js"></script>
 
 </body>
+
 </html>
 ```
