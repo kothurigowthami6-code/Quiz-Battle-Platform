@@ -1,18 +1,15 @@
-// Quiz Analytics - User stats calculate చేస్తుంది
 class QuizAnalytics {
     constructor() {
         this.totalQuizzes = 0;
         this.totalScore = 0;
     }
 
-    // Quiz complete అయ్యాక call చేయి
     addQuizResult(score, totalQuestions) {
         this.totalQuizzes++;
         this.totalScore += score;
         localStorage.setItem('analytics', JSON.stringify(this.getStats()));
     }
 
-    // Stats return చేస్తుంది
     getStats() {
         return {
             totalQuizzes: this.totalQuizzes,
@@ -21,7 +18,6 @@ class QuizAnalytics {
         };
     }
 
-    // Console లో print చేస్తుంది
     displayStats() {
         const stats = this.getStats();
         console.log("Total Quizzes:", stats.totalQuizzes);
