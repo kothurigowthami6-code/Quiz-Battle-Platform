@@ -139,9 +139,8 @@ function endQuiz() {
 
     stopTimer();
 
-    console.log(
-        "Quiz Finished"
-    );
+    console.log("Quiz Finished");
+    console.log("Result Displayed");
 
     if (
         typeof AppState !== "undefined"
