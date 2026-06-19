@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Battle Platform</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .quiz-page,
+        .result-page,
+        .leaderboard-page {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <img
+            src="assets/logos/quiz-logo.jpeg"
+            alt="Quiz Logo"
+            class="logo">
+
+        <h1>Quiz Battle Platform</h1>
+
+        <p class="tagline">
+            Challenge • Compete • Conquer
+        </p>
+
+    </header>
+
+    <!-- HOME PAGE -->
+    <section id="homePage" class="home-page">
+
+        <div class="home-card">
+
+            <img
+                src="assets/images/quiz-banner.jpeg"
+                alt="Quiz Banner"
+                class="banner">
+
+            <h2>Welcome Challenger!</h2>
+
+            <p class="subtitle">
+                Test your knowledge and become the ultimate champion.
+            </p>
+
+            <div class="input-group">
+
+                <label for="playerName">
+                    Player Name
+                </label>
+
+                <input
+                    type="text"
+                    id="playerName"
+                    placeholder="Enter your name">
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="category">
+                    Select Category
+                </label>
+
+                <select id="category">
+
+                    <option value="">
+                        Choose Category
+                    </option>
+
+                    <option value="html">
+                        HTML
+                    </option>
+
+                    <option value="css">
+                        CSS
+                    </option>
+
+                    <option value="javascript">
+                        JavaScript
+                    </option>
+
+                    <option value="python">
+                        Python
+                    </option>
+
+                    <option value="general">
+                        General Knowledge
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="btn start-btn"
+                onclick="startQuiz()">
+
+                Start Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- QUIZ PAGE -->
+    <section id="quizPage" class="quiz-page">
+
+        <div class="quiz-container">
+
+            <div class="quiz-top-bar">
+
+                <div class="score-box">
+
+                    Score :
+                    <span id="score">0</span>
+
+                </div>
+
+                <div class="timer-box">
+
+                    Time :
+                    <span id="timer">30</span>s
+
+                </div>
+
+            </div>
+
+            <div class="question-card">
+
+                <h2 id="question">
+                    Question will appear here...
+                </h2>
+
+                <div id="options"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RESULT PAGE -->
+    <section
+        id="resultPage"
+        class="result-page">
+
+        <div class="result-card">
+
+            <img
+                src="assets/images/trophy.jpeg"
+                alt="Trophy"
+                class="trophy-image">
+
+            <h2>Quiz Completed!</h2>
+
+            <div id="result">
+
+                <div class="result-item">
+
+                    <h3>Final Score</h3>
+
+                    <p id="finalScore">0</p>
+
+                </div>
+
+                <div class="result-item">
+
+                    <h3>Correct Answers</h3>
+
+                    <p id="correctCount">0</p>
+
+                </div>
+
+                <div class="result-item">
+
+                    <h3>Wrong Answers</h3>
+
+                    <p id="wrongCount">0</p>
+
+                </div>
+
+                <div class="result-item">
+
+                    <h3>Accuracy</h3>
+
+                    <p id="accuracy">0%</p>
+
+                </div>
+
+            </div>
+
+            <button
+                class="btn restart-btn"
+                onclick="location.reload()">
+
+                Play Again
+
+            </button>
+
+            <button
+                class="btn"
+                onclick="showLeaderboard()">
+
+                View Leaderboard
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- LEADERBOARD PAGE -->
+    <section
+        id="leaderboardPage"
+        class="leaderboard-page">
+
+        <div class="leaderboard-card">
+
+            <img
+                src="assets/images/winner.jpeg"
+                alt="Winner"
+                class="winner-banner">
+
+            <h2>
+                🏆 Top 10 Players
+            </h2>
+
+            <div
+                id="leaderboardContainer">
+
+            </div>
+
+            <button
+                class="btn"
+                onclick="location.reload()">
+
+                Back Home
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Quiz Battle Platform |
+            All Rights Reserved
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="data/questions.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/quiz.js"></script>
+
+    <script src="js/timer.js"></script>
+
+    <script src="js/leaderboard.js"></script>
+
+    <script src="js/analytics.js"></script>
+
+    <script>
+
+        function startQuiz() {
+
+            const name =
+                document.getElementById(
+                    "playerName"
+                ).value;
+
+            const category =
+                document.getElementById(
+                    "category"
+                ).value;
+
+            if (!name.trim()) {
+
+                alert(
+                    "Enter your name"
+                );
+
+                return;
+            }
+
+            if (!category) {
+
+                alert(
+                    "Select category"
+                );
+
+                return;
+            }
+
+            localStorage.setItem(
+                "playerName",
+                name
+            );
+
+            registerPlayer(name);
+
+            document.getElementById(
+                "homePage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "quizPage"
+            ).style.display = "block";
+
+            startQuizGame(category);
+        }
+
+        function showLeaderboard() {
+
+            document.getElementById(
+                "resultPage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "leaderboardPage"
+            ).style.display = "block";
+
+            leaderboard.displayLeaderboard(
+                "leaderboardContainer"
+            );
+        }
+
+    </script>
+
+</body>
+</html>

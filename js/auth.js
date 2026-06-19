@@ -1,9 +1,10 @@
 let currentUser = null;
 
-// Register / Login Player
+// Register Player
 function registerPlayer(name) {
+
     if (!name || name.trim() === "") {
-        alert("⚠️ Please enter a valid name");
+        alert("Please enter a valid name");
         return false;
     }
 
@@ -13,65 +14,115 @@ function registerPlayer(name) {
         startTime: null
     };
 
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(currentUser)
+    );
+
     return true;
 }
 
-// Get current user session
+// Get Current User
 function getCurrentUser() {
+
     if (!currentUser) {
-        currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        currentUser = JSON.parse(
+            localStorage.getItem("currentUser")
+        );
     }
+
     return currentUser;
 }
 
-// Start Quiz Flow
+// Start Quiz
 function startQuiz() {
-    const user = getCurrentUser();
 
-    if (!user) {
-        alert("🚀 Please register first!");
+    const playerName =
+        document.getElementById("playerName").value;
+
+    const category =
+        document.getElementById("category").value;
+
+    if (!playerName) {
+        alert("Please enter your name");
         return;
     }
 
-    user.startTime = new Date().getTime();
-    localStorage.setItem("currentUser", JSON.stringify(user));
+    if (!category) {
+        alert("Please select a category");
+        return;
+    }
 
-    // Navigate to quiz page
-    window.location.href = "quiz.html";
+    registerPlayer(playerName);
+
+    localStorage.setItem(
+        "selectedCategory",
+        category
+    );
+
+    const user = getCurrentUser();
+
+    user.startTime = Date.now();
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user)
+    );
+
+    // Hide Home Page
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
+
+    // Show Quiz Page
+    document.getElementById(
+        "quizPage"
+    ).style.display = "block";
+
+    // Start quiz
+    if (
+        typeof startQuizGame === "function"
+    ) {
+        startQuizGame(category);
+    }
 }
 
-// Restart Quiz Flow
+// Restart Quiz
 function restartQuiz() {
+
+    location.reload();
+}
+
+// Save Score
+function saveScore(score) {
+
     const user = getCurrentUser();
 
     if (user) {
-        user.score = 0;
-        user.startTime = null;
-        localStorage.setItem("currentUser", JSON.stringify(user));
-    }
 
-    window.location.href = "index.html";
+        user.score = score;
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+    }
 }
 
-// End Quiz Flow
-function endQuiz(finalScore) {
-    const user = getCurrentUser();
-
-    if (user) {
-        user.score = finalScore;
-        localStorage.setItem("currentUser", JSON.stringify(user));
-    }
-
-    alert("🏁 Quiz Completed!");
-    window.location.href = "result.html";
-}
-
-// Logout user
+// Logout
 function logout() {
-    localStorage.removeItem("currentUser");
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    localStorage.removeItem(
+        "selectedCategory"
+    );
+
     currentUser = null;
 
-    alert("👋 Logged out successfully!");
-    window.location.href = "index.html";
+    location.reload();
 }
+console.log("auth.js loaded");

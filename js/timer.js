@@ -1,66 +1,91 @@
+// =============================
+// APP STATE
+// =============================
+
 const AppState = {
-    timeLeft: 30,
-    score: 0,
-    currentQuestion: 0,
-    totalQuestions: 10,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-    totalTimeBonus: 0,
-    quizFinished: false
+    timeLeft: 30
 };
 
-let timerInterval;
+let timerInterval = null;
+
+// =============================
+// START TIMER
+// =============================
 
 function startTimer() {
+
+    const timerElement =
+        document.getElementById("timer");
+
     AppState.timeLeft = 30;
 
+    if (timerElement) {
+        timerElement.innerText =
+            AppState.timeLeft;
+    }
+
     timerInterval = setInterval(() => {
+
         AppState.timeLeft--;
 
-        console.log("Time Left:", AppState.timeLeft);
+        if (timerElement) {
+            timerElement.innerText =
+                AppState.timeLeft;
+        }
 
         if (AppState.timeLeft <= 0) {
+
             stopTimer();
+
             autoSubmit();
         }
+
     }, 1000);
 }
 
+// =============================
+// STOP TIMER
+// =============================
+
 function stopTimer() {
-    clearInterval(timerInterval);
+
+    if (timerInterval) {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+    }
 }
+
+// =============================
+// RESET TIMER
+// =============================
 
 function resetTimer() {
+
     stopTimer();
+
     AppState.timeLeft = 30;
-}
 
-function calculateScore(isCorrect) {
-    if (isCorrect) {
-        AppState.score += 10;
-        AppState.correctAnswers++;
-        AppState.totalTimeBonus += AppState.timeLeft;
-    } else {
-        AppState.wrongAnswers++;
+    const timerElement =
+        document.getElementById("timer");
+
+    if (timerElement) {
+
+        timerElement.innerText =
+            AppState.timeLeft;
     }
-
-    console.log("Score:", AppState.score);
 }
+
+// =============================
+// AUTO SUBMIT
+// =============================
 
 function autoSubmit() {
-    AppState.wrongAnswers++;
+
     console.log("Time Over");
-}
 
-function endQuiz() {
-    stopTimer();
+    currentQuestionIndex++;
 
-    const finalScore =
-        AppState.score +
-        AppState.totalTimeBonus;
-
-    AppState.quizFinished = true;
-
-    console.log("Quiz Finished");
-    console.log("Final Score:", finalScore);
+    nextQuestion();
 }

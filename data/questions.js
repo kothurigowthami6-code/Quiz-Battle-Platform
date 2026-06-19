@@ -1,5 +1,5 @@
 const questions = {
-Python: [
+python: [
 { question: "Who developed Python?", options: ["James Gosling", "Guido van Rossum", "Dennis Ritchie", "Bjarne Stroustrup"], answer: "Guido van Rossum" },
 { question: "Which keyword is used to define a function in Python?", options: ["function", "func", "def", "define"], answer: "def" },
 { question: "Which symbol is used for comments in Python?", options: ["//", "#", "/*", "--"], answer: "#" },
@@ -17,8 +17,8 @@ Python: [
 { question: "Which keyword creates a class?", options: ["object", "class", "new", "define"], answer: "class" }
 ],
 
-```
-JavaScript: [
+
+javascript: [
     { question: "Which company developed JavaScript?", options: ["Google", "Microsoft", "Netscape", "Apple"], answer: "Netscape" },
     { question: "Which keyword declares a variable?", options: ["var", "int", "string", "float"], answer: "var" },
     { question: "Which symbol is used for single-line comments?", options: ["#", "//", "<!--", "/*"], answer: "//" },
@@ -36,7 +36,7 @@ JavaScript: [
     { question: "Which loop runs while a condition is true?", options: ["for", "foreach", "while", "repeat"], answer: "while" }
 ],
 
-CSS: [
+css: [
     { question: "What does CSS stand for?", options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], answer: "Cascading Style Sheets" },
     { question: "Which property changes text color?", options: ["font-color", "text-color", "color", "background-color"], answer: "color" },
     { question: "Which property changes background color?", options: ["bgcolor", "background-color", "color", "background"], answer: "background-color" },
@@ -54,7 +54,7 @@ CSS: [
     { question: "Which property controls element transparency?", options: ["visibility", "opacity", "transparent", "display"], answer: "opacity" }
 ],
 
-HTML: [
+html: [
     { question: "What does HTML stand for?", options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tool Markup Language", "Home Text Markup Language"], answer: "Hyper Text Markup Language" },
     { question: "Which tag creates a hyperlink?", options: ["<link>", "<a>", "<href>", "<url>"], answer: "<a>" },
     { question: "Which tag inserts an image?", options: ["<picture>", "<img>", "<image>", "<src>"], answer: "<img>" },
@@ -72,7 +72,7 @@ HTML: [
     { question: "HTML files use which extension?", options: [".html", ".ht", ".web", ".page"], answer: ".html" }
 ],
 
-"General Knowledge": [
+general: [
     { question: "What is the capital of India?", options: ["Mumbai", "Chennai", "New Delhi", "Hyderabad"], answer: "New Delhi" },
     { question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: "Mars" },
     { question: "How many continents are there?", options: ["5", "6", "7", "8"], answer: "7" },
@@ -88,12 +88,18 @@ HTML: [
     { question: "What is the national bird of India?", options: ["Parrot", "Peacock", "Sparrow", "Crow"], answer: "Peacock" },
     { question: "Which festival is known as the Festival of Lights?", options: ["Holi", "Diwali", "Pongal", "Eid"], answer: "Diwali" },
     { question: "Which is the longest river in the world?", options: ["Amazon", "Ganga", "Nile", "Yangtze"], answer: "Nile" }
+
 ]
-```
 
 };
 
-// Get questions by category
+Object.keys(questions).forEach(category => {
+    questions[category].forEach(question => {
+        question.answer =
+            question.options.indexOf(question.answer);
+    });
+});
+
 function getQuestionsByCategory(category) {
-return questions[category] || [];
+    return questions[category] || [];
 }
